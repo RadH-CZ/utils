@@ -9,8 +9,7 @@
 		}
 	],
 	"require": {
-		"php": ">=5.4.4",
-		"nette/nette": ">=2.1"
+		"php": ">=5.4.4"
 	},
 	"conflict": {
 		"nette/nette": "<2.1"
@@ -18,11 +17,5 @@
 	"autoload": {
 		"classmap": ["src/"]
 	},
-	"minimum-stability": "dev",
-	"repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@bitbucket.org:mbily/grs-utils.git"
-        }
-    ]
+	"minimum-stability": "dev"
 }
