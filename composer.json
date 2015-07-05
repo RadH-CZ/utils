@@ -1,0 +1,28 @@
+{
+	"name": "grs/utils",
+	"description": "GRS Utility Classes",
+	"homepage": "http://www.studiogrs.cz",
+	"authors": [
+		{
+			"name": "Mirek Bily",
+			"homepage": "http://www.studiogrs.cz"
+		}
+	],
+	"require": {
+		"php": ">=5.4.4",
+		"nette/nette": ">=2.1"
+	},
+	"conflict": {
+		"nette/nette": "<2.1"
+	},
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	"minimum-stability": "dev",
+	"repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@bitbucket.org:mbily/grs-utils.git"
+        }
+    ]
+}
