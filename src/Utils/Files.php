@@ -2,9 +2,11 @@
 
 namespace Grs\Utils;
 
-use Nette,
-	Nette\Application\UI,
-	Nette\Http\FileUpload;
+use Nette;
+use Nette\Application\UI;
+use Nette\Http\FileUpload;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 
 
 class Files
@@ -32,6 +34,33 @@ class Files
 		}
 
 		return $return;
+	}
+
+
+	/**
+	 * Deletes a file or directory.
+	 * @see https://github.com/nette/build-tools/blob/v2.3/Make/DefaultTasks.php#L119
+	 */
+	public static function delete($path)
+	{
+		if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+			exec('attrib -R ' . escapeshellarg($path) . ' /D');
+			exec('attrib -R ' . escapeshellarg("$path/*") . ' /D /S');
+		}
+
+		if (is_dir($path)) {
+			foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $item) {
+				if ($item->isDir()) {
+					rmdir($item);
+				} else {
+					unlink($item);
+				}
+			}
+			rmdir($path);
+
+		} elseif (is_file($path)) {
+			unlink($path);
+		}
 	}
 
 
